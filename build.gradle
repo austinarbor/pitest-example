@@ -1,0 +1,33 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'info.solidsoft.gradle.pitest:gradle-pitest-plugin:1.9.0'
+    }
+}
+
+plugins {
+    id 'java'
+}
+
+apply plugin: 'info.solidsoft.pitest.aggregator'
+
+group 'dev.aga'
+version '1.0-SNAPSHOT'
+
+subprojects {
+    apply plugin: 'info.solidsoft.pitest'
+    pitest {
+        junit5PluginVersion = '1.0.0'
+        threads = Runtime.getRuntime().availableProcessors()
+        exportLineCoverage = true
+        timestampedReports = false
+        targetClasses = ['dev.aga.*']
+        targetTests = ['dev.aga.*Test']
+    }
+}
+
+test {
+    useJUnitPlatform()
+}

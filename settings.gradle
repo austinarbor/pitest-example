@@ -1,0 +1,3 @@
+rootProject.name = 'pitest-example'
+include 'submodule-1'
+
