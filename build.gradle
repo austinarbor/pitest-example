@@ -1,10 +1,5 @@
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'info.solidsoft.gradle.pitest:gradle-pitest-plugin:1.9.0'
-    }
+plugins {
+  id "info.solidsoft.pitest" version "1.9.0" apply false
 }
 
 repositories {
