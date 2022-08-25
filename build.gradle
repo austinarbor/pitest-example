@@ -1,14 +1,9 @@
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'info.solidsoft.gradle.pitest:gradle-pitest-plugin:1.9.0'
-    }
+plugins {
+  id "info.solidsoft.pitest" version "1.9.0" apply false
 }
 
-plugins {
-    id 'java'
+repositories {
+    mavenCentral()
 }
 
 apply plugin: 'info.solidsoft.pitest.aggregator'
@@ -17,10 +12,12 @@ group 'dev.aga'
 version '1.0-SNAPSHOT'
 
 subprojects {
+    apply plugin: 'java'
     apply plugin: 'info.solidsoft.pitest'
     pitest {
         junit5PluginVersion = '1.0.0'
         threads = Runtime.getRuntime().availableProcessors()
+        outputFormats = ["XML"]	//required for aggregated report
         exportLineCoverage = true
         timestampedReports = false
         targetClasses = ['dev.aga.*']
@@ -28,6 +25,3 @@ subprojects {
     }
 }
 
-test {
-    useJUnitPlatform()
-}
