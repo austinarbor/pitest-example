@@ -7,8 +7,8 @@ buildscript {
     }
 }
 
-plugins {
-    id 'java'
+repositories {
+    mavenCentral()
 }
 
 apply plugin: 'info.solidsoft.pitest.aggregator'
@@ -22,6 +22,7 @@ subprojects {
     pitest {
         junit5PluginVersion = '1.0.0'
         threads = Runtime.getRuntime().availableProcessors()
+        outputFormats = ["XML"]	//required for aggregated report
         exportLineCoverage = true
         timestampedReports = false
         targetClasses = ['dev.aga.*']
@@ -29,6 +30,3 @@ subprojects {
     }
 }
 
-test {
-    useJUnitPlatform()
-}
