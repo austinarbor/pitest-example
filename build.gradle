@@ -17,6 +17,7 @@ group 'dev.aga'
 version '1.0-SNAPSHOT'
 
 subprojects {
+    apply plugin: 'java'
     apply plugin: 'info.solidsoft.pitest'
     pitest {
         junit5PluginVersion = '1.0.0'
